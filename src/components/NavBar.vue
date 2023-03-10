@@ -5,8 +5,8 @@
     <nav class="navbar navbar-expand-lg fixed-top navbar-scroll">
     <div class="container-fluid">
       <router-link to="/" class="navbar-brand">WNTD</router-link>
-      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
-        data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
         aria-label="Toggle navigation">
         <i class="fas fa-bars"></i>
       </button>
@@ -53,12 +53,15 @@
   </nav>
 
 </template>
+
 <script>
-export default {
-    
-}
+
+
+
 </script>
+
 <style >
+
 @media (max-width: 991px) {
   .navbar-scroll {
     background-color: #fff;
