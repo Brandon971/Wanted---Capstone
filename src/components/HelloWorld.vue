@@ -99,7 +99,7 @@
 
 
       </div>
-      <div class="container">
+      <div class="container border">
         <div class="row">
           <div class="col">
       <h5 class="about pb-3 mt-5 ms-5" >Respected as a quality provider of sneakerwear, Wanted is an authorised retailer of footwear
@@ -116,7 +116,7 @@ scene in South Africa. Wanted holds the rights to spray paint and customise many
 from around the world.
 </h5></div>
 <div class="col">
-<img src="https://i.postimg.cc/7667R1BR/jordan-1.webp" class="about-img pt-5" />
+<img src="https://i.postimg.cc/gJNYtPz9/1668197985-airdiorc.webp" class="about-img pt-5" />
 </div>
 </div>
 </div>
@@ -208,9 +208,7 @@ img:hover {
   transform: rotateZ(180deg);
 }
 
-.about-img{
-  border-radius: 2%;
-}
+
 
 @media screen and (max-width:720px ){
     .container{

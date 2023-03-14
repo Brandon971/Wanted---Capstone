@@ -19,16 +19,13 @@
             <router-link  class="nav-link" to="/products">Sneakers</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/admin" class="nav-link">Admin</router-link>
-          </li>
-          <li class="nav-item">
            <router-link to="/contact" class="nav-link">Contact Us</router-link>
           </li>
           <li class="nav-item">
             <router-link to="/login" class="nav-link">Login</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/register" class="nav-link">Register</router-link>
+            <router-link to="/register" class="nav-link">Sign Up</router-link>
           </li>
         </ul>
         <ul class="navbar-nav d-flex flex-row">
@@ -43,7 +40,7 @@
             </a>
           </li>
           <li class="nav-item me-3 me-lg-0">
-            <a class="nav-link" href="#!">
+            <a class="nav-link" href="https://www.instagram.com/_brandonswinton_/">
               <i class="fab fa-instagram"></i>
             </a>
           </li>
@@ -61,7 +58,23 @@
 </script>
 
 <style >
-
+	.navbar {
+    background-color:  #fff;
+  }
+  .nav-link{
+    color: black !important;
+    font-family: OpenSans-Bold, sans-serif;
+  }
+  .nav-link:hover{
+    color: darkorange !important;
+    transition: 0.4s;
+  }
+  .navbar-brand{
+    color: black !important;
+  }
+  .navbar-brand:hover{
+    color: darkorange !important;
+  }
 @media (max-width: 991px) {
   .navbar-scroll {
     background-color: #fff;

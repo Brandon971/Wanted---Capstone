@@ -6,7 +6,7 @@
     <!-- Section: Social media -->
     <section class="mb-4">
       <!-- Github -->
-      <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/Simp4Hitagi/Otaku" role="button"
+      <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/Brandon971/Wanted---Capstone/tree/frontend" role="button"
         ><i class="fab fa-github"></i>
 </a>
     </section>
@@ -15,7 +15,7 @@
   <!-- Grid container -->
 
   <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+  <div class="footer text-center p-3 " style="background-color: rgba(0, 0, 0, 0.2);">
     © 2023 Copyright: Brandon Swinton
   </div>
   <!-- Copyright -->
@@ -28,5 +28,8 @@ export default {
 }
 </script>
 <style>
+.footer{
+  color: rgb(79, 79, 79) !important;
+}
     
 </style>
