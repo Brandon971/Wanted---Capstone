@@ -14,10 +14,7 @@ exports.create = async (req, res) => {
         gender: req.body.gender,
         cellphoneNumber: req.body.cellphoneNumber,
         emailAdd: req.body.emailAdd,
-        userPass: req.body.userPass,
-        userRole: req.body.userRole,
-        userProfile: req.body.userProfile,
-        joinDate: req.body.joinDate
+        userPass: req.body.userPass
     })
 
     user.userPass = await 
