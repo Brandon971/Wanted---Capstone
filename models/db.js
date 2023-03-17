@@ -10,9 +10,9 @@ const connection = mysql.createConnection({
   port: database.PORT
 });
 
-connection.connect(error => {
-  if (error) throw error;
-  console.log("Successfully connected to the database.");
-});
+// connection.connect(error => {
+//   if (error) throw error;
+//   console.log("Successfully connected to the database.");
+// });
 
 module.exports = connection;
