@@ -9,16 +9,16 @@
             ">
           <div class="card-body p-5 shadow-5 text-center">
             <h2 class="fw-bold mb-5">Login</h2>
-            <form>
+            <form @submit.prevent="login">
               
               <div class="form-outline mb-4">
-                <input type="email" id="form3Example3" class="form-control" />
+                <input type="email" id="form3Example3" class="form-control" v-model="userLogin.emailAdd"/>
                 <label class="form-label" for="form3Example3">Email address</label>
               </div>
 
 
               <div class="form-outline mb-4">
-                <input type="password" id="form3Example4" class="form-control" />
+                <input type="password" id="form3Example4" class="form-control" v-model="userLogin.userPass" />
                 <label class="form-label" for="form3Example4">Password</label>
               </div>
 
@@ -27,7 +27,7 @@
                 <p class="small me-3 pb-lg-2"><a class="text-muted" href="#!">Forgot password?</a></p>
               </div>
 
-              <button type="submit" class="btn btn-primary btn-block mb-4">
+              <button type="submit" class="btn  btn-block mb-4">
                 Login
               </button>
 
@@ -51,10 +51,28 @@
 </template>
 <script>
 export default {
+  data() {
+    return{
+      userLogin :{
+        emailAdd :'',
+        userPass:''
+      },
     
+    }
+  },
+  methods: {
+    async login() {
+      await this.$store.dispatch('login',this.userLogin )
+      console.log('logged in')
+    }
+  }
+
 }
 </script>
-<style>
+<style scoped>
+.btn{
+  background-color: #a6bcff;
+}
 
         .cascading-right {
       margin-right: -100px;

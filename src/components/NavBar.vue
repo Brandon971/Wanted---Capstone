@@ -25,7 +25,7 @@
             <router-link to="/login" class="nav-link">Login</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/register" class="nav-link">Sign Up</router-link>
+            <router-link to="/admin" class="nav-link">Admin</router-link>
           </li>
         </ul>
         <ul class="navbar-nav d-flex flex-row">
@@ -63,17 +63,19 @@
   }
   .nav-link{
     color: black !important;
-    font-family: OpenSans-Bold, sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
   }
   .nav-link:hover{
-    color: darkorange !important;
+    color: #a6bcff!important;
+    font-size: 17px;
     transition: 0.4s;
   }
   .navbar-brand{
     color: black !important;
+    font-family: 'Roboto Condensed', sans-serif;
   }
   .navbar-brand:hover{
-    color: darkorange !important;
+    color: #a6bcff!important;
   }
 @media (max-width: 991px) {
   .navbar-scroll {

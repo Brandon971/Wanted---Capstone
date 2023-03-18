@@ -13,6 +13,8 @@
           <div class="row align-items-center">
             <div class="col-12">
               <h1 class="mb-0 text-white display-1">Wanted</h1>
+              <button class="button-57" role="button"><span class="text">SHOP</span><span>WNTD</span></button>
+              
             </div>
           </div>
         </div>
@@ -102,7 +104,7 @@
       <div class="container border">
         <div class="row">
           <div class="col">
-      <h5 class="about pb-3 mt-5 ms-5" >Respected as a quality provider of sneakerwear, Wanted is an authorised retailer of footwear
+      <h5 class="about pb-3 mt-5 ms-5 pt-5" >Respected as a quality provider of sneakerwear, Wanted is an authorised retailer of footwear
 from iconic street-inspired brands including, Nike, Air Jordan, adidas Originals, PUMA, 
 Converse and Vans to name a few.
 You’ll also find a wide variety of accessories including caps and beanies, bags, sunglasses 
@@ -132,6 +134,73 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.button-57 {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #18181a;
+  color: #18181a;
+  font-family: 'Roboto Condensed', sans-serif;
+  display: inline-block;
+  font-size: 15px;
+  line-height: 15px;
+  padding: 18px 18px 17px;
+  text-decoration: none;
+  cursor: pointer;
+  background: #fff;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-left: 38%;
+  box-shadow: 0 0 5px 0 rgb(188, 185, 185) ;
+  border: none;
+}
+
+.button-57 span:first-child {
+  position: relative;
+  transition: color 600ms cubic-bezier(0.48, 0, 0.12, 1);
+  z-index: 10;
+}
+
+.button-57 span:last-child {
+  color: white;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  transition: all 500ms cubic-bezier(0.48, 0, 0.12, 1);
+  z-index: 100;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  transform: translateY(225%) translateX(-50%);
+  height: 14px;
+  line-height: 13px;
+}
+
+.button-57:after {
+  content: "";
+  position: absolute;
+  bottom: -50%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  transform-origin: bottom center;
+  transition: transform 600ms cubic-bezier(0.48, 0, 0.12, 1);
+  transform: skewY(9.3deg) scaleY(0);
+  z-index: 50;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.button-57:hover:after {
+  transform-origin: bottom center;
+  transform: skewY(9.3deg) scaleY(2);
+}
+
+.button-57:hover span:last-child {
+  transform: translateX(-50%) translateY(-100%);
+  opacity: 1;
+  transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
+}
 
 body{
   display: grid;
@@ -206,6 +275,9 @@ img:hover {
   right:0;
   top: 0;
   transform: rotateZ(180deg);
+}
+h5{
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 

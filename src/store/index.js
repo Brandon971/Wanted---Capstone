@@ -1,7 +1,9 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
 
-const wanted = 'https://wanted-capstone-project.onrender.com/'
+const wanted = 'http://localhost:3300/'
+
+// http://localhost:3300/
 
 export default createStore({
   state: {
@@ -45,7 +47,7 @@ export default createStore({
   },
   actions: {
     async login (context, payload) {
-      const res = await axios.post(`${wanted}login`, payload);
+      const res = await axios.post(`${wanted}login`, payload , {withCredentials:true});
       const {result, err} = await res.data;
       if(result) {
         context.commit('setUser', result);
@@ -54,7 +56,7 @@ export default createStore({
       }
     },
     async registerUser(context, payload) {
-      const res = await axios.post(`${wanted}register`,payload)
+      const res = await axios.post(`${wanted}register`,payload);
       const {msg, err} = await res.data;
       if(msg) {
         context.commit('setMessage', msg);
@@ -63,7 +65,7 @@ export default createStore({
       }
     },
     async fetchUsers(context, payload) {
-      const res = await axios.post(`${wanted}users`, payload);
+      const res = await axios.get(`${wanted}users`, payload );
       const{msg, err} = await res.data;
       if(msg) {
         context.commit('setUsers',msg);
@@ -88,7 +90,16 @@ export default createStore({
       }else{
         context.commit('setProducts', res.data)
       }
-    }
+    },
+    async fetchProductByID(context, id){
+      const res = await axios.get(`${wanted}product/${id}`);
+      context.commit('setProduct', res.data);
+      context.commit('setSpinner', false);
+      // if(results){
+      //   context.commit('setProduct', results);
+      //   console.log(results[0])
+      // } else context.commit('setMessage', err);
+    },
   },
   modules: {
   }

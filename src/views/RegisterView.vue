@@ -1,8 +1,5 @@
 <template >
-       <section class="bg-image"
-  style="background-image: url('https://i.postimg.cc/gJNYtPz9/1668197985-airdiorc.webp');
-  background-repeat: no-repeat;
-  background-size: cover;">
+       <section class="bg-image">
   <div class="mask d-flex align-items-center h-100 gradient-custom-3">
     <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100 pt-3 ">
@@ -11,41 +8,41 @@
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
-              <form>
+              <form @submit.prevent="regUser">
                 <div class="row form-outline mb-4">
                     <div class="col">
-                  <input type="text" id="form3Example1cg" class="form-control " />
-                  <label class="form-label" for="form3Example1cg">First Name</label>
+                  <input type="text" id="form3Example1cg" class="form-control " v-model="reg.firstName"/>
+                  <label class="form-label" for="form3Example1cg">First Name </label>
                 </div>
                 
                     <div class="col">
-                  <input type="text" id="form3Example1cg" class="form-control " />
+                  <input type="text" id="form3Example1cg" class="form-control " v-model="reg.lastName" />
                   <label class="form-label" for="form3Example1cg">Last Name</label>
                 </div>
             </div>
             <div class="row form-outline mb-4">
                     <div class="col">
-                  <input type="text" id="form3Example1cg" class="form-control " />
-                  <label class="form-label" for="form3Example1cg">Your Email</label>
+                  <input type="text" id="form3Example1cg" class="form-control " v-model="reg.emailAdd" />
+                  <label class="form-label" for="form3Example1cg">Email Address</label>
                 </div>
                 
                     <div class="col">
-                  <input type="text" id="form3Example1cg" class="form-control " />
+                  <input type="text" id="form3Example1cg" class="form-control " v-model="reg.cellphoneNumber">
                   <label class="form-label" for="form3Example1cg">Cellphone</label>
                 </div>
             </div>
 
             <div class="row form-outline mb-4">
                     <div class="col">
-                  <input type="text" id="form3Example1cg" class="form-control " />
+                  <input type="password" id="form3Example1cg" class="form-control " v-model="reg.userPass"/>
                   <label class="form-label" for="form3Example1cg">Create Password</label>
                 </div>
                 
                 <div class="gender col pt-1">
-                    <select class="select w-100 h-50">
+                    <select v-model="reg.gender" class="select w-100 h-50">
                         <option value="1" disabled>Gender</option>
-                        <option value="2">Female</option>
-                        <option value="3">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
                     </select>
                 </div>
             </div>
@@ -57,8 +54,8 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                  <button type="button"
-                    class="btn btn-success btn-block gradient-custom-4 text-white">Register</button>
+                  <button type="submit"
+                    class="btn btn-block text-dark">Register</button>
                 </div>
 
                 <p class="text-center text-muted mt-5 mb-0">Already Have An Account? <a href="/login"
@@ -76,21 +73,37 @@
 </template>
 <script>
 export default {
+  data() {
+    return{
+      reg :{
+        firstName:'',
+        lastName:'',
+        emailAdd:'',
+        cellphoneNumber:'',
+        userPass:'',
+        gender: ''
+      },
+    
+    }
+  },
+  methods: {
+    async regUser() {
+      await this.$store.dispatch('registerUser',this.reg )
+    }
+  }
+
     
 }
 </script>
 <style scoped>
-.gradient-custom-3 {
-background: #246662;
-background: -webkit-linear-gradient(to right, rgba(1, 2, 6, 0.5), rgba(6, 6, 6, 0.5));
-background: linear-gradient(to right, rgba(9, 1, 4, 0.5), rgba(2, 7, 9, 0.5))
+.bg-image{
+  background-image: url('https://i.postimg.cc/gJNYtPz9/1668197985-airdiorc.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.gradient-custom-4 {
-
-background: #224b51;
-background: -webkit-linear-gradient(to right, rgb(0, 0, 0), rgb(2, 10, 14));
-background: linear-gradient(to right, rgb(0, 0, 0), rgb(4, 10, 14))
-} 
+.btn{
+  background-color: #a6bcff;
+}
 .mask{
     backdrop-filter: blur(5px);
 }

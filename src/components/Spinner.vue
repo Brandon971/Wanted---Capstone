@@ -1,6 +1,15 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template lang="">
-<div class="loader mx-auto"></div>
+    <div class="loader mx-auto">
+    <div class="loaders"></div>
+    <div class="loaders"></div>
+    <div class="loaders"></div>
+    <div class="loaders"></div>
+    <div class="loaders"></div>
+    <div class="loaders"></div>
+    <div class="loaders"></div>
+    <div class="loaders"></div>
+</div>
 </template>
 <script>
 export default {
@@ -11,94 +20,109 @@ export default {
 </script>
 <style>
 .loader {
+  --uib-size: 2.8rem;
+  --uib-speed: .9s;
+  --uib-color: #183153;
   position: relative;
-  width: 78px;
-  height: 78px;
-  border-radius: 50%;
-  background: #fff;
-  border: 8px solid #131a1d;
-  overflow: hidden;
-  box-sizing: border-box;
-  margin-top: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: var(--uib-size);
+  width: var(--uib-size);
 }
 
-.loader::after {
-  content: '';
+.loaders {
   position: absolute;
+  top: 0;
   left: 0;
-  top: -50%;
-  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   height: 100%;
-  background: #263238;
-  z-index: 5;
-  border-bottom: 8px solid #131a1d;
-  box-sizing: border-box;
-  animation: eyeShade 3s infinite;
+  width: 100%;
 }
 
-.loader::before {
+.loaders::before {
   content: '';
-  position: absolute;
-  left: 20px;
-  bottom: 15px;
-  width: 32px;
-  z-index: 2;
-  height: 32px;
-  background: #111;
+  height: 20%;
+  width: 20%;
   border-radius: 50%;
-  animation: eyeMove 3s infinite;
+  background-color: var(--uib-color);
+  transform: scale(0);
+  opacity: 0.5;
+  animation: pulse0112 calc(var(--uib-speed) * 1.111) ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(18, 31, 53, 0.3);
+  padding-bottom: 222px;
 }
 
-@keyframes eyeShade {
-  0% {
-    transform: translateY(0)
-  }
+.loaders:nth-child(2) {
+  transform: rotate(45deg);
+}
 
-  20% {
-    transform: translateY(5px)
-  }
+.loaders:nth-child(2)::before {
+  animation-delay: calc(var(--uib-speed) * -0.875);
+}
 
-  40% , 50% {
-    transform: translateY(-5px)
-  }
+.loaders:nth-child(3) {
+  transform: rotate(90deg);
+}
 
-  60% {
-    transform: translateY( -8px)
-  }
+.loaders:nth-child(3)::before {
+  animation-delay: calc(var(--uib-speed) * -0.75);
+}
 
-  75% {
-    transform: translateY( 5px)
-  }
+.loaders:nth-child(4) {
+  transform: rotate(135deg);
+}
 
+.loaders:nth-child(4)::before {
+  animation-delay: calc(var(--uib-speed) * -0.625);
+}
+
+.loaders:nth-child(5) {
+  transform: rotate(180deg);
+}
+
+.loaders:nth-child(5)::before {
+  animation-delay: calc(var(--uib-speed) * -0.5);
+}
+
+.loaders:nth-child(6) {
+  transform: rotate(225deg);
+}
+
+.loaders:nth-child(6)::before {
+  animation-delay: calc(var(--uib-speed) * -0.375);
+}
+
+.dot-spinner__dot:nth-child(7) {
+  transform: rotate(270deg);
+}
+
+.loaders:nth-child(7)::before {
+  animation-delay: calc(var(--uib-speed) * -0.25);
+}
+
+.loaders:nth-child(8) {
+  transform: rotate(315deg);
+}
+
+.loaders:nth-child(8)::before {
+  animation-delay: calc(var(--uib-speed) * -0.125);
+}
+
+@keyframes pulse0112 {
+  0%,
   100% {
-    transform: translateY(10px)
+    transform: scale(0);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
-@keyframes eyeMove {
-  0% {
-    transform: translate(0 , 0)
-  }
-
-  20% {
-    transform: translate(0px , 5px)
-  }
-
-  40% , 50% {
-    transform: translate(0px , -5px)
-  }
-
-  60% {
-    transform: translate(-10px , -5px)
-  }
-
-  75% {
-    transform: translate(-20px , 5px)
-  }
-
-  100% {
-    transform: translate(0 , 10px)
-  }
-}
     
 </style>
