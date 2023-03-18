@@ -33,7 +33,7 @@
 
               <div class="text-center">
                 <p>Don't have an Account?</p>
-                <a href="/register">Register</a>
+                <router-link to="/register">Register</router-link>
               </div>
             </form>
           </div>

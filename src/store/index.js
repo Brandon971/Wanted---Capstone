@@ -64,13 +64,13 @@ export default createStore({
         context.commit('setMessage',err);
       }
     },
-    async fetchUsers(context, payload) {
-      const res = await axios.get(`${wanted}users`, payload );
-      const{msg, err} = await res.data;
-      if(msg) {
-        context.commit('setUsers',msg);
+    async fetchUsers(context) {
+      const res = await axios.get(`${wanted}users`);
+      console.log(await res.data)
+      if(res.data !== undefined){
+        context.commit('setUsers', res.data)
       } else {
-        context.commit('setUsers', err);
+        context.commit('setUsers', res.data)
       }
     },
     async updateUser(context, payload) {
