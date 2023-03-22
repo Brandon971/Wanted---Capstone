@@ -1,5 +1,7 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
+import { useCookies } from 'vue3-cookies'
+const {cookies} = useCookies();
 
 const wanted = 'http://localhost:3300/'
 
@@ -8,11 +10,12 @@ const wanted = 'http://localhost:3300/'
 export default createStore({
   state: {
     users: null,
-    user: null,
+    user: null || JSON.parse(localStorage.getItem("token")),
     products: null,
     product: null,
     asc: true,
-    showSpinner: true
+    showSpinner: true,
+    token: null
   },
   getters: {
   },
@@ -28,6 +31,9 @@ export default createStore({
     },
     setProduct(state,values) {
       state.product = values
+    },
+    setToken(state, value) {
+      state.token = value
     },
     setSpinner(state, values) {
       state.showSpinner = values
@@ -47,10 +53,13 @@ export default createStore({
   },
   actions: {
     async login (context, payload) {
-      const res = await axios.post(`${wanted}login`, payload , {withCredentials:true});
-      const {result, err} = await res.data;
+      const res = await axios.post(`${wanted}login`, payload);
+      const {result, jwt, err} = await res.data;
       if(result) {
+        console.log(result);
         context.commit('setUser', result);
+        context.commit('setToken', jwt);
+        cookies.set('Legit', jwt);
       }else {
         context.commit('setMessage', err)
       }
@@ -70,7 +79,7 @@ export default createStore({
       if(res.data !== undefined){
         context.commit('setUsers', res.data)
       } else {
-        context.commit('setUsers', res.data)
+        context.commit('setUsers', res)
       }
     },
     async updateUser(context, payload) {
@@ -92,7 +101,7 @@ export default createStore({
       }
     },
     async fetchProductByID(context, id){
-      const res = await axios.get(`${wanted}product/${id}`);
+      const res = await axios.get(`${wanted}product/${id}`, {withCredentials:true});
       context.commit('setProduct', res.data);
       context.commit('setSpinner', false);
       // if(results){

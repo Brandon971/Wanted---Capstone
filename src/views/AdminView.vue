@@ -12,7 +12,7 @@
         <th><span>Last Name</span></th>
         <th><span>Email Address</span></th>
         <th><span>Cellphone Number</span></th>
-        <th><span><i class="bi bi-person-plus"></i></span></th>
+        <th></th>
       </tr>
     </thead>
     <tbody v-for="users in user" :key="users">
@@ -23,7 +23,7 @@
         <td> {{users.emailAdd}} </td>
         <td> {{users.cellphoneNumber}} </td>
         <td><i class="bi bi-trash3 p-2"></i>
-        <i class="bi bi-pencil-square"></i></td>
+        <i class="bi bi-pencil-square"  @submit.prevent="deleteProduct"></i></td>
       </tr>
     </tbody>
   </table>
@@ -41,7 +41,40 @@
         <th><span>price</span></th>
         <th><span>prodQuantity</span></th>
         <th><span>imgURL</span></th>
-        <th><span><i class="bi bi-person-plus"></i></span></th>
+        <th><button type="button" class="btn btn-close-white my-3 d-flex h-25" data-bs-toggle="modal" data-bs-target="#exampleModal">+
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-light">
+      <div class="modal-header p-3">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">New Product</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-3">
+        <form @submit.prevent="newProduct">
+            <input class="form-control mb-1" type="text" name="prodName" id="prodName" placeholder="Name" v-model="product.prodName" required>
+
+            <input class="form-control mb-1" type="text" name="prodDescription" id="prodDescription" placeholder="Description" v-model="product.prodDescription" required>
+
+            <input class="form-control mb-1" type="text" name="price" id="price" placeholder="price" v-model="product.price" required>
+
+            <input class="form-control mb-1" type="text" name="prodQuantity" id="prodQuantity" placeholder="Quantity" v-model="product.prodQuantity" required>
+            
+            <input class="form-control mb-1" type="text" name="category" id="category" placeholder="category" v-model="product.category" required>
+
+            <input class="form-control mb-1" type="text" name="imgURL" id="imgURL" placeholder="imgURL" v-model="product.imgURL">
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary"   data-bs-dismiss="modal">Save changes</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+</div></th>
       </tr>
     </thead>
     <tbody v-for="product in products" :key="product" >
@@ -53,7 +86,7 @@
         <td>{{product.price}}</td>
         <td>{{product.prodQuantity}}</td>
         <td><img :src="product.imgURL"></td>
-        <td> <i class="bi bi-trash3 p-2"></i>
+        <td> <i class="bi bi-trash3 p-2"  @submit.prevent="deleteProduct"></i>
             <i class="bi bi-pencil-square"></i> 
         </td>
       </tr>
@@ -112,6 +145,9 @@ methods: {
     this.product.imgURL = '';
     this.product.price = '';
     this.product.prodQuantity = '';
+  },
+  async deleteProduct() {
+    await this.$store.dispatch("deleteProduct", this.$route.params.id)
   }
 }
 }
@@ -244,6 +280,8 @@ h1 {
   margin: 0 auto;
   padding: 10px 17px;
   -webkit-box-shadow: 2px 2px 3px -1px rgba(0,0,0,0.35)
-
+}
+.modal{
+    margin-left: 33%;
 }
 </style>

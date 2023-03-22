@@ -1,14 +1,9 @@
 <!-- eslint-disable vue/multi-word-component-names -->
-<template lang="">
-    <div class="loader mx-auto">
-    <div class="loaders"></div>
-    <div class="loaders"></div>
-    <div class="loaders"></div>
-    <div class="loaders"></div>
-    <div class="loaders"></div>
-    <div class="loaders"></div>
-    <div class="loaders"></div>
-    <div class="loaders"></div>
+<template >
+<div class="three-body">
+<div class="three-body__dot"></div>
+<div class="three-body__dot"></div>
+<div class="three-body__dot"></div>
 </div>
 </template>
 <script>
@@ -19,109 +14,108 @@ export default {
 }
 </script>
 <style>
-.loader {
-  --uib-size: 2.8rem;
-  --uib-speed: .9s;
-  --uib-color: #183153;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  height: var(--uib-size);
-  width: var(--uib-size);
+.three-body {
+ --uib-size: 35px;
+ --uib-speed: 0.8s;
+ --uib-color: #5D3FD3;
+ position: relative;
+ display: inline-block;
+ height: var(--uib-size);
+ width: var(--uib-size);
+ animation: spin78236 calc(var(--uib-speed) * 2.5) infinite linear;
+ margin-left: 50%;
 }
 
-.loaders {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  height: 100%;
-  width: 100%;
+.three-body__dot {
+ position: absolute;
+ height: 100%;
+ width: 30%;
 }
 
-.loaders::before {
-  content: '';
-  height: 20%;
-  width: 20%;
-  border-radius: 50%;
-  background-color: var(--uib-color);
-  transform: scale(0);
-  opacity: 0.5;
-  animation: pulse0112 calc(var(--uib-speed) * 1.111) ease-in-out infinite;
-  box-shadow: 0 0 20px rgba(18, 31, 53, 0.3);
-  padding-bottom: 222px;
+.three-body__dot:after {
+ content: '';
+ position: absolute;
+ height: 0%;
+ width: 100%;
+ padding-bottom: 100%;
+ background-color: var(--uib-color);
+ border-radius: 50%;
 }
 
-.loaders:nth-child(2) {
-  transform: rotate(45deg);
+.three-body__dot:nth-child(1) {
+ bottom: 5%;
+ left: 0;
+ transform: rotate(60deg);
+ transform-origin: 50% 85%;
 }
 
-.loaders:nth-child(2)::before {
-  animation-delay: calc(var(--uib-speed) * -0.875);
+.three-body__dot:nth-child(1)::after {
+ bottom: 0;
+ left: 0;
+ animation: wobble1 var(--uib-speed) infinite ease-in-out;
+ animation-delay: calc(var(--uib-speed) * -0.3);
 }
 
-.loaders:nth-child(3) {
-  transform: rotate(90deg);
+.three-body__dot:nth-child(2) {
+ bottom: 5%;
+ right: 0;
+ transform: rotate(-60deg);
+ transform-origin: 50% 85%;
 }
 
-.loaders:nth-child(3)::before {
-  animation-delay: calc(var(--uib-speed) * -0.75);
+.three-body__dot:nth-child(2)::after {
+ bottom: 0;
+ left: 0;
+ animation: wobble1 var(--uib-speed) infinite
+    calc(var(--uib-speed) * -0.15) ease-in-out;
 }
 
-.loaders:nth-child(4) {
-  transform: rotate(135deg);
+.three-body__dot:nth-child(3) {
+ bottom: -5%;
+ left: 0;
+ transform: translateX(116.666%);
 }
 
-.loaders:nth-child(4)::before {
-  animation-delay: calc(var(--uib-speed) * -0.625);
+.three-body__dot:nth-child(3)::after {
+ top: 0;
+ left: 0;
+ animation: wobble2 var(--uib-speed) infinite ease-in-out;
 }
 
-.loaders:nth-child(5) {
-  transform: rotate(180deg);
+@keyframes spin78236 {
+ 0% {
+  transform: rotate(0deg);
+ }
+
+ 100% {
+  transform: rotate(360deg);
+ }
 }
 
-.loaders:nth-child(5)::before {
-  animation-delay: calc(var(--uib-speed) * -0.5);
-}
-
-.loaders:nth-child(6) {
-  transform: rotate(225deg);
-}
-
-.loaders:nth-child(6)::before {
-  animation-delay: calc(var(--uib-speed) * -0.375);
-}
-
-.dot-spinner__dot:nth-child(7) {
-  transform: rotate(270deg);
-}
-
-.loaders:nth-child(7)::before {
-  animation-delay: calc(var(--uib-speed) * -0.25);
-}
-
-.loaders:nth-child(8) {
-  transform: rotate(315deg);
-}
-
-.loaders:nth-child(8)::before {
-  animation-delay: calc(var(--uib-speed) * -0.125);
-}
-
-@keyframes pulse0112 {
-  0%,
+@keyframes wobble1 {
+ 0%,
   100% {
-    transform: scale(0);
-    opacity: 0.5;
-  }
+  transform: translateY(0%) scale(1);
+  opacity: 1;
+ }
 
-  50% {
-    transform: scale(1);
-    opacity: 1;
-  }
+ 50% {
+  transform: translateY(-66%) scale(0.65);
+  opacity: 0.8;
+ }
+}
+
+@keyframes wobble2 {
+ 0%,
+  100% {
+  transform: translateY(0%) scale(1);
+  opacity: 1;
+ }
+
+ 50% {
+  transform: translateY(66%) scale(0.65);
+  opacity: 0.8;
+ }
 }
 
     

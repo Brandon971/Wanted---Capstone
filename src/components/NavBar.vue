@@ -35,9 +35,9 @@
             </a>
           </li>
           <li class="nav-item me-3 me-lg-0">
-            <a class="nav-link" href="#!">
-              <i class="fab fa-twitter"></i>
-            </a>
+            <router-link  to="/userProfile" class="nav-link" >
+              <i class="bi bi-person"></i>
+            </router-link>
           </li>
           <li class="nav-item me-3 me-lg-0">
             <a class="nav-link" href="https://www.instagram.com/_brandonswinton_/">
