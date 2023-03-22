@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require('cookie-parser')
 
+
 const app = express();
 
 var corsOptions = {
@@ -11,7 +12,6 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(function(req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Credentials", "true")
   res.setHeader("Access-Control-Allow-Methods", "*");
   res.setHeader("Access-Control-Allow-Headers", "*");

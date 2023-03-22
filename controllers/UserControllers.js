@@ -1,6 +1,7 @@
 const User = require("../models/UserModel");
 const {hash, compare, hashSync} = require ('bcrypt');
 const{createToken} = require('../middleware/AuthenticatedUser');
+const bodyParser = require('body-parser');
 
 exports.create = async (req, res) => {
     if(!req.body) {
@@ -52,8 +53,8 @@ exports.loginUser = async( req, res) => {
                 if(cErr) throw cErr;
                 const jwt = createToken({emailAdd, userPass})
                 res.cookie('Legit',jwt,{
-                    maxAge: 360000,
-                    httpOnly: true,
+                    maxAge: 360000000,
+                    httpOnly: false,
                     path:'/'
                 })
                 if(cResult) {
