@@ -9,16 +9,16 @@
             ">
           <div class="card-body p-5 shadow-5 text-center">
             <h2 class="fw-bold mb-5">Login</h2>
-            <form @submit.prevent="login">
+            <form @submit.prevent="login" >
               
               <div class="form-outline mb-4">
-                <input type="email" id="form3Example3" class="form-control" v-model="userLogin.emailAdd"/>
+                <input type="email" id="form3Example3" class="form-control" v-model="userLogin.emailAdd" required/>
                 <label class="form-label" for="form3Example3">Email address</label>
               </div>
 
 
               <div class="form-outline mb-4">
-                <input type="password" id="form3Example4" class="form-control" v-model="userLogin.userPass" />
+                <input type="password" id="form3Example4" class="form-control" v-model="userLogin.userPass" required />
                 <label class="form-label" for="form3Example4">Password</label>
               </div>
 
@@ -27,13 +27,13 @@
                 <p class="small me-3 pb-lg-2"><a class="text-muted" href="#!">Forgot password?</a></p>
               </div>
 
-              <button type="submit" class="btn  btn-block mb-4">
+              <button type="submit" class="btn  btn-block mb-4" >
                 Login
               </button>
 
               <div class="text-center">
                 <p>Don't have an Account?</p>
-                <router-link to="/register">Register</router-link>
+                <router-link to="/register" >Register</router-link>
               </div>
             </form>
           </div>
@@ -63,9 +63,9 @@ export default {
   methods: {
     async login() {
       await this.$store.dispatch('login',this.userLogin )
-      console.log('logged in')
+      alert('logged in')
     }
-  }
+  },
 
 }
 </script>

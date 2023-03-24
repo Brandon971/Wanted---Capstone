@@ -13,7 +13,7 @@
           <div class="row align-items-center">
             <div class="col-12">
               <h1 class="mb-0 text-white display-1">Wanted</h1>
-              <button class="button-57" role="button"><span class="text">SHOP</span><span>WNTD</span></button>
+              <router-link to="/products" class="button-57" role="button"><span class="text">SHOP</span><span>WNTD</span></router-link>
               
             </div>
           </div>
@@ -129,6 +129,7 @@ from around the world.
 <script>
 export default {
   name:"HelloWorld"
+  
 }
 </script>
 
@@ -301,6 +302,7 @@ h5{
       width: 100%;
     }
     .about{
+      margin: auto;
       width: 100%;
     }
     h5{

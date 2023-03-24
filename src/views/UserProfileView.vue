@@ -1,39 +1,72 @@
-<template >
-    <div class="profile-wrapper">
+<template  >
+    <div ><SpinnerC></SpinnerC></div>
+    <div class="profile-wrapper" v-if="user">
 	<div class="profile-image">
-		<img src="http://nickylew.com/wp-content/uploads/2016/09/image.jpeg">
+
 	</div>
 	<div class="close"></div>
-	<h2 class="profile-title">Nick <span>Lewis</span></h2>
+	<h2 class="profile-title">{{ user.firstName }}<span>{{ user.lastName }}</span></h2>
 	<div class="profile-info">
 		<div class="content">
-			<h3>About</h3>
-			<p>#Graphic / #Web #Designer & #frontend #developer fuelled by coffee. Longtime lover of skiing and mountain living. Occasional blogger.</p>
-			<p class="link one"><i class="fa fa-link" aria-hidden="true"></i><a href="http://nickylew.com" target="_blank">www.nickylew.com</a></p>
-			<p class="link"><i class="fa fa-globe" aria-hidden="true"></i>United Kingdom</p>
-		</div>
-		<div class="stats">
-			<div class="stat">
-				<span class="number">482</span> Followers
-			</div>
-			<div class="stat">
-				<span class="number">1,061</span> Following
-			</div>
-			<div class="stat">
-				<span class="number">15</span> Ski trips
-			</div>
+			<h3><word class="text">Cellphone: </word></h3> <p>{{ user.cellphoneNumber }}</p>
+           <h3><word  class="text">Email:</word></h3> <p>{{ user.emailAdd }}</p>
+            <div class="logout">
+            <button type="submit" @click="logout" class="btn  btn-block mb-4" > 
+                Log Out
+              </button>
+            </div>
 		</div>
 	</div>
 </div>
 <!-- <div v-else><SpinnerC/></div> -->
 </template>
 <script>
-    // import SpinnerC from '../components/Spinner.vue'
+// import { useStore } from 'vuex';
+import SpinnerC from '../components/Spinner.vue'
+
 export default {
     // components: {SpinnerC}
+    props: ['id'],
+    name: 'userProfile', 
+        components: {SpinnerC} ,
+        computed: {
+        user() {
+            console.log(this.$store.state.user);
+            return this.$store.state.user;
+        },
+    },
+    created() {
+        console.log();
+    },
+    // setup() {
+    //     const store = useStore()
+    //     const logout = () =>{
+    //         store.dispatch('logout')
+    //     }
+    //     const fetchUser = () => {
+    //         let userID = this.cookies.get("UserID");
+    //         console.log(userID);
+    //         store.dispatch('fetchUserById', userID)
+    //     } 
+    //     return{
+    //         fetchUser,
+    //         logout
+    //     }
+    // },
+        mounted() {
+            console.log(this.id);
+            this.$store.dispatch('fetchUserById', this.id)
+        }
 }
 </script>
 <style scoped>
+.logout{
+    padding-left: 40%;
+    padding-top: 20%;
+}
+.btn{
+  background-color: #a6bcff;
+}
     body{
 	margin: 0;
 	background-color: white;
@@ -59,12 +92,12 @@ export default {
 		top :0;
 		left :0;
 		border-radius: 1em;
-		background-color :crimson;
+		background-color :#a6bcff;
 		z-index: 1;
 		overflow: hidden;
-		-webkit-box-shadow :1px 24px 55px -19px rgba(220,20,60,1);
-		-moz-box-shadow :1px 24px 55px -19px rgba(220,20,60,1);
-		box-shadow :1px 24px 55px -19px rgba(220,20,60,1);
+		-webkit-box-shadow :1px 24px 55px -19px #a6bcff;
+		-moz-box-shadow :1px 24px 55px -19px #a6bcff;
+		box-shadow :1px 24px 55px -19px #a6bcff;
     }
 		img{
 			-webkit-filter :grayscale(100%);
@@ -83,20 +116,7 @@ export default {
 		top: 12.3%;
 		right: 7%;
     }
-		/* &:before,
-		&:after
-			display block
-			content ""
-			position absolute
-			top 0
-			left 0
-			width 100%
-			height 1px
-			background #333
-		&:before
-			transform rotate(-45deg)
-		&:after
-			transform rotate(45deg) */
+	
 	.profile-title{
 		display :block;
 		position :absolute;
@@ -136,75 +156,9 @@ export default {
         }
 			h3{
 				text-transform: uppercase;
-				color: crimson;
-				letter-spacing :0.2em;
+				color: #a6bcff;
             }
 			p{
-				font-weight :400;
-				text-rendering :optimizeLegibility;
-				-webkit-font-smoothing: antialiased;
-				-moz-osx-font-smoothing: grayscale;
-				line-height :1.5em;
+                 font-family: 'Roboto Condensed', sans-serif;
             }
-				.link{
-					font-size: 0.9em;
-                }
-					i{
-						color: crimson;
-						font-family: "FontAwesome";
-						line-height :inherit;
-						margin-right: 4%;
-                    }
-					a:link,
-					a:visited{
-						text-decoration: none;
-						color :inherit;
-						transition:  0.25s;
-                    }
-						/* &:hover
-							color crimson
-							transition color 0.25s
-					&.one
-						margin-top 3em */
-
-		/* .stats{
-			display: block;
-			height auto
-			position absolute
-			bottom 7.8%
-			right 0
-        }
-			.stat
-				display inline-block
-				width 33.33%
-				float left
-				text-align center
-				color crimson
-				font-size 0.8em
-				line-height 2em
-				.number
-					font-size 2em
-					font-weight 300
-					font-family "Open Sans", sans-serif
-					line-height 100%
-					color #333
-					vertical-align top
-					margin-right 3%
-		.arrow
-			display block
-			position absolute
-			bottom 7.5%
-			left 11px
-			width 25px
-			height 25px
-			transform rotate(45deg)
-			&.one
-				border 1px solid #333
-				border-left-color transparent
-				border-bottom-color transparent
-			&.two
-				border 1px solid #333
-				border-right-color transparent
-				border-top-color transparent
-				left -40px */
 </style>

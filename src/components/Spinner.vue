@@ -1,9 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template >
-<div class="three-body">
-<div class="three-body__dot"></div>
-<div class="three-body__dot"></div>
-<div class="three-body__dot"></div>
+  <div class="loader">
+    <div class="waves"></div>
 </div>
 </template>
 <script>
@@ -14,108 +12,60 @@ export default {
 }
 </script>
 <style>
-.three-body {
- --uib-size: 35px;
- --uib-speed: 0.8s;
- --uib-color: #5D3FD3;
- position: relative;
- display: inline-block;
- height: var(--uib-size);
- width: var(--uib-size);
- animation: spin78236 calc(var(--uib-speed) * 2.5) infinite linear;
- margin-left: 50%;
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  overflow: hidden;
+  height: 80px;
+  width: 80px;
+  border: 1px solid transparent;
+  box-shadow: 0 0 0 2px rgb(25, 116, 253);
+  border-radius: 50%;
 }
 
-.three-body__dot {
- position: absolute;
- height: 100%;
- width: 30%;
+.waves {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgb(30, 146, 255);
+  box-shadow: inset 0 0 50px rgb(0,0,0,.3);
 }
 
-.three-body__dot:after {
- content: '';
- position: absolute;
- height: 0%;
- width: 100%;
- padding-bottom: 100%;
- background-color: var(--uib-color);
- border-radius: 50%;
+.waves::before,
+.waves::after {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -75%);
+  background: #000;
 }
 
-.three-body__dot:nth-child(1) {
- bottom: 5%;
- left: 0;
- transform: rotate(60deg);
- transform-origin: 50% 85%;
+.waves::before {
+  border-radius: 45%;
+  background: rgb(248, 248, 248);
+  animation: wave91234 5s linear infinite;
 }
 
-.three-body__dot:nth-child(1)::after {
- bottom: 0;
- left: 0;
- animation: wobble1 var(--uib-speed) infinite ease-in-out;
- animation-delay: calc(var(--uib-speed) * -0.3);
+.waves::after {
+  border-radius: 40%;
+  background: rgb(255,255,255,.5);
+  animation: wave91234 10s linear infinite;
 }
 
-.three-body__dot:nth-child(2) {
- bottom: 5%;
- right: 0;
- transform: rotate(-60deg);
- transform-origin: 50% 85%;
-}
+@keyframes wave91234 {
+  0% {
+    transform: translate(-50%, -75%) rotate(0deg);
+  }
 
-.three-body__dot:nth-child(2)::after {
- bottom: 0;
- left: 0;
- animation: wobble1 var(--uib-speed) infinite
-    calc(var(--uib-speed) * -0.15) ease-in-out;
-}
-
-.three-body__dot:nth-child(3) {
- bottom: -5%;
- left: 0;
- transform: translateX(116.666%);
-}
-
-.three-body__dot:nth-child(3)::after {
- top: 0;
- left: 0;
- animation: wobble2 var(--uib-speed) infinite ease-in-out;
-}
-
-@keyframes spin78236 {
- 0% {
-  transform: rotate(0deg);
- }
-
- 100% {
-  transform: rotate(360deg);
- }
-}
-
-@keyframes wobble1 {
- 0%,
   100% {
-  transform: translateY(0%) scale(1);
-  opacity: 1;
- }
-
- 50% {
-  transform: translateY(-66%) scale(0.65);
-  opacity: 0.8;
- }
-}
-
-@keyframes wobble2 {
- 0%,
-  100% {
-  transform: translateY(0%) scale(1);
-  opacity: 1;
- }
-
- 50% {
-  transform: translateY(66%) scale(0.65);
-  opacity: 0.8;
- }
+    transform: translate(-50%, -75%) rotate(360deg);
+  }
 }
 
     

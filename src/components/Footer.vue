@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-        <footer class="footer bg-dark text-center text-white">
+        <footer class="footer bg-dark text-center text-white container-fluid">
   <!-- Grid container -->
   <div class="container p-4 pb-0">
     <!-- Section: Social media -->

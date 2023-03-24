@@ -28,14 +28,14 @@
             <router-link to="/admin" class="nav-link">Admin</router-link>
           </li>
         </ul>
-        <ul class="navbar-nav d-flex flex-row">
+        <ul class="navbar-nav d-flex flex-row" v-if="user">
           <li class="nav-item me-3 me-lg-0">
-            <a class="nav-link" href="#!">
+            <router-link :to="`/user/${user.userID}/cart`" class="nav-link" >
               <i class="fas fa-shopping-cart"></i>
-            </a>
+            </router-link>
           </li>
           <li class="nav-item me-3 me-lg-0">
-            <router-link  to="/userProfile" class="nav-link" >
+            <router-link  :to="`/userProfile/${user.userID}`" class="nav-link" >
               <i class="bi bi-person"></i>
             </router-link>
           </li>
@@ -52,7 +52,21 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie'
+export default {
 
+  computed: {
+    user() {
+        return this.$store.state.user;
+  },
+},
+mounted() {
+  const userID = Cookies.get('userID',{ path: '/'})
+  this.$store.dispatch('fetchUserById', userID);
+
+  
+}
+}
 
 
 </script>

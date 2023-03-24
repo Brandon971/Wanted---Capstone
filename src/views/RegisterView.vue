@@ -89,6 +89,8 @@ export default {
   methods: {
     async regUser() {
       await this.$store.dispatch('registerUser',this.reg )
+      alert('You are registered')
+      this.$router.push('/login')
     }
   }
 

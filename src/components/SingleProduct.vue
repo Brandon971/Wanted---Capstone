@@ -1,6 +1,6 @@
 <template>
-    <div>
-      <h1 class="display  p-5">Single Product</h1>
+    <div >
+      <h1 class="display  p-5">SNEAKER</h1>
       <SpinnerC v-if="!product"/>
       <div class="card mb-3 w-75 mx-auto" v-if="product">
         <div class="row g-0">
@@ -13,7 +13,7 @@
               <h4 class="card-text"><span class="text">PRICE: </span> <br> R{{ product.price }}</h4>
               <h5 class="card-text"><span class="text">GENRE: </span> <br> {{ product.category }}</h5>
               <h6 class="card-text"><span class="text"> DESCRIPTION: </span> <br> {{ product.prodDescription }}</h6>
-              <button class="button-86" role="button">Add To Cart</button>
+              <button class="button-86" role="button" @click="addToCart(product)">Add To Cart</button>
               
             </div>
           </div>
@@ -23,6 +23,7 @@
   </template>
   
   <script>
+  import Cookies from 'js-cookie'
   import SpinnerC from '../components/Spinner.vue';
   import { computed } from 'vue';
   import { useStore } from 'vuex';
@@ -31,7 +32,19 @@
     methods: {
       returnToProducts() {
       this.$router.push("/products");
+      
     },
+    async addToCart(product) {
+      const userID = Cookies.get('UserID', );
+      console.log(userID, product.id);
+      this.$store.dispatch('addToCart', {
+        userID: userID,
+        payload: {
+          userID: userID,
+          id: product.id
+        }
+      })
+    }
   },
     components: {
       SpinnerC
