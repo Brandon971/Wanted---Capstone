@@ -2,6 +2,7 @@ const { result } = require("lodash");
 const sql = require("./db")
 
 const Users = function(user) {
+    this.userID = user.userID;
     this.firstName = user.firstName;
     this.lastName = user.lastName;
     this.gender = user.gender;
@@ -9,7 +10,6 @@ const Users = function(user) {
     this.emailAdd = user.emailAdd
     this.userPass = user.userPass;
     this.userProfile = user.userProfile;
-    this.joinDate = user.joinDate;
 };
 
 Users.create = (newUser, result) => {
@@ -25,7 +25,7 @@ Users.create = (newUser, result) => {
 };
 
 Users.login = (user, result) => {
-    sql.query('SELECT firstName, lastName, gender, cellphoneNumber, emailAdd, userPass,userProfile, joinDate FROM Users WHERE emailAdd =?',[user.emailAdd],async (err, res)=> {
+    sql.query('SELECT userID, firstName, lastName, gender, cellphoneNumber, emailAdd, userPass,userProfile FROM Users WHERE emailAdd =?',[user.emailAdd],async (err, res)=> {
         if(err) {
             console.log('error: ', err)
             result(err, null)

@@ -18,6 +18,13 @@ module.exports = app => {
     router.get("/product/:id", verifyAToken , requireAuth, product.findOne);
     router.put("/product/:id", product.update);
     router.delete("/product/:id", product.delete);
+    
+    const cart = require('../controllers/CartController');
+    router.post("/user/:id/cart",cart.create )
+    router.get("/user/:id/carts" ,cart.findAll)
+    router.put("/user/:id/cart", cart.update);
+    router.delete("/user/:id/cart", cart.delete)
 
+    
     app.use('/', router)
 };

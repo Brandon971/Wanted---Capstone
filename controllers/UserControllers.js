@@ -10,7 +10,7 @@ exports.create = async (req, res) => {
         })
     }
     const user = new User({
-        fistName: req.body.firstName,
+        firstName: req.body.firstName,
         lastName: req.body.lastName,
         gender: req.body.gender,
         cellphoneNumber: req.body.cellphoneNumber,
