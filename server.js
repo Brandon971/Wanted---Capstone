@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser')
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8080"
+  origin: "https://wanted-capstone.web.app"
 };
 
 app.use(cors(corsOptions));
