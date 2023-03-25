@@ -122,6 +122,7 @@ export default createStore({
       const {data} = await axios.get(`${wanted}product/${id}`);
       context.commit('setProduct', data.result);
       context.commit('setSpinner', false);
+      cookies.set('Legit', data.jwt)
       // if(results){
       //   context.commit('setProduct', results);
       //   console.log(results[0])
