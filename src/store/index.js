@@ -119,7 +119,7 @@ export default createStore({
       }
     },
     async fetchProductByID(context, id){
-      const {data} = await axios.get(`${wanted}product/${id}`, {withCredentials:true});
+      const {data} = await axios.get(`${wanted}product/${id}`);
       context.commit('setProduct', data.result);
       context.commit('setSpinner', false);
       // if(results){
