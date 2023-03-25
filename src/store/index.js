@@ -4,7 +4,7 @@ import { useCookies } from 'vue3-cookies'
 import router from '@/router'
 const {cookies} = useCookies();
 
-const wanted = 'https://wanted-capstone-project.onrender.com'
+const wanted = 'https://wanted-capstone-project.onrender.com/'
 
 // http://localhost:3300/
 
