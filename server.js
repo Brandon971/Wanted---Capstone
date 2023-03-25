@@ -12,7 +12,7 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", '*')
+  res.header("Access-Control-Allow-Origin", 'https://wanted-45c77.web.app')
   res.header("Access-Control-Allow-Credentials", "true")
   res.setHeader("Access-Control-Allow-Methods", "*");
   res.setHeader("Access-Control-Allow-Headers", "*");
