@@ -40,7 +40,7 @@ Products.findById = (id, result) => {
   };
 
 Products.getAll = (prodName, result) => {
-    let query = "SELECT * FROM Products";
+    let query = "SELECT id, prodName, prodDescription, category, price, prodQuantity, imgURL, userID FROM Products";
     if (prodName) {
         query += `WHERE prodName LIKE '%${prodName}%'`;
     }
