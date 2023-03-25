@@ -113,16 +113,14 @@ export default createStore({
     },
     async fetchProducts (context) {
       const res= await axios.get(`${wanted}products`);
-      console.log(await res.data)
-      if(res.data !== undefined){
-        context.commit('setProducts', res.data)
-      }else{
-        context.commit('setProducts', res.data)
+      const data = await res.data;
+      if(data){
+        context.commit('setProducts', data)
       }
     },
     async fetchProductByID(context, id){
-      const res = await axios.get(`${wanted}product/${id}`, {withCredentials:true});
-      context.commit('setProduct', res.data);
+      const {data} = await axios.get(`${wanted}product/${id}`, {withCredentials:true});
+      context.commit('setProduct', data.result);
       context.commit('setSpinner', false);
       // if(results){
       //   context.commit('setProduct', results);
