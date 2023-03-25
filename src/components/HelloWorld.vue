@@ -280,6 +280,9 @@ img:hover {
 h5{
   font-family: 'Roboto Condensed', sans-serif;
 }
+.about{
+      max-width: 100%;
+    }
 
 
 
@@ -303,7 +306,7 @@ h5{
     }
     .about{
       margin: auto;
-      width: 100%;
+      max-width: 100%;
     }
     h5{
       font-size: 10px;

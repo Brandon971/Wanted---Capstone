@@ -11,8 +11,8 @@
 			<h3><word class="text">Cellphone: </word></h3> <p>{{ user.cellphoneNumber }}</p>
            <h3><word  class="text">Email:</word></h3> <p>{{ user.emailAdd }}</p>
             <div class="logout">
-            <button type="submit" @click="logout" class="btn  btn-block mb-4" > 
-                Log Out
+            <button type="submit" class="btn  btn-block mb-4"  @click="deleteUser(users.userID)" > 
+                Delete Account
               </button>
             </div>
 		</div>
@@ -56,7 +56,13 @@ export default {
         mounted() {
             console.log(this.id);
             this.$store.dispatch('fetchUserById', this.id)
-        }
+        },
+		methods: {
+			async deleteUser(id) {
+      alert('successfully deleted')
+    this.$store.dispatch("deleteUser",id)
+  }
+		}
 }
 </script>
 <style scoped>

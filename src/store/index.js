@@ -4,7 +4,7 @@ import { useCookies } from 'vue3-cookies'
 import router from '@/router'
 const {cookies} = useCookies();
 
-const wanted = 'http://localhost:3300/'
+const wanted = 'https://wanted-capstone-project.onrender.com'
 
 // http://localhost:3300/
 
@@ -46,6 +46,9 @@ export default createStore({
     },
     setLogOut(state){
       state.user = null
+    },
+    clearItems(state) {
+      state.items = [];
     },
     sortProductsPrice: (state) => {
       state.products.sort((a, b)=> {
@@ -108,15 +111,6 @@ export default createStore({
       context.commit('setUser', res.data);
       // context.commit('setSpinner', false);
     },
-    async updateUser(context, payload) {
-      const res = await axios.post(`${wanted}user`, payload);
-      const {msg, err} = await res.data;
-      if(msg) {
-        context.commit('setUser', msg)
-      } else {
-        context.commit('setUser', err)
-      }
-    },
     async fetchProducts (context) {
       const res= await axios.get(`${wanted}products`);
       console.log(await res.data)
@@ -134,6 +128,15 @@ export default createStore({
       //   context.commit('setProduct', results);
       //   console.log(results[0])
       // } else context.commit('setMessage', err);
+    },
+    async createProduct(context, payload) {
+      const res = await axios.post(`${wanted}product`,payload)
+      const {msg, err} = await res.data;
+      if(msg) {
+        context.commit('setMessage', msg);
+      } else {
+        context.commit('setMessage', err);
+      }
     },
     async deleteProduct({commit, dispatch}, id) {
       try {
@@ -158,18 +161,46 @@ export default createStore({
       context.commit('setCart', res.data)
       console.log(id);
     },
-    async addToCart(context, {userID, payload}) {
-      console.log(userID, payload);
+    async addToCart(context, {payload}) {
+      console.log(payload);
+      let userID = cookies.get('UserID')
       const {res, message} = await axios.post(`${wanted}user/${userID}/cart`, payload)
       if(res) {
         context.commit('setCart', res.data)
       } else {
         context.commit('setMessage', message)
       }
-
-
+    },
+    async updateProduct(context, payload) {
+      try{
+        const res = await axios.put(`${wanted}product/${payload.id}`, payload)
+        console.log('Response: ' , res);
+        alert('Update Success')
+        let { results, err} = await res.data;
+        if (results) {
+          context.commit('setProduct', results[0])
+        }else {
+          context.commit('setMessage', err)
+        }
+      }catch(error) {
+        console.log(error)
+      }
+    },
+    async updateUser(context, payload) {
+      try{
+        const res = await axios.put(`${wanted}user/${payload.userID}`, payload)
+        console.log('Response: ' , res);
+        alert('Update Success')
+        let { results, err} = await res.data;
+        if (results) {
+          context.commit('setUser', results[0])
+        }else {
+          context.commit('setMessage', err)
+        }
+      }catch(error) {
+        console.log(error)
+      }
     }
-
   },
   modules: {
   }

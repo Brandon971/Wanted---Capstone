@@ -40,7 +40,7 @@
                         <div style="width: 80px;">
                           <h5 class="mb-0">R{{ product.price }}</h5>
                         </div>
-                        <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                        <a  style="color: #cecece;" ><i class="fas fa-trash-alt"></i></a>
                       </div>
                     </div>
                   </div>
@@ -135,16 +135,20 @@
 </template>
 <script>
 export default {
+  
     props: ['id'],
     computed: {
       getCart(){
         console.log(this.$store.state.cart)
         return this.$store.state.cart
-      }
+      },
     },
     mounted() {
         this.$store.dispatch('fetchCart', this.id)
-    }
+    },
+    methods: {
+  }
+
 }
 </script>
 <style scoped>

@@ -30,10 +30,6 @@
   export default {
     name: 'singleProduct',
     methods: {
-      returnToProducts() {
-      this.$router.push("/products");
-      
-    },
     async addToCart(product) {
       const userID = Cookies.get('UserID', );
       console.log(userID, product.id);
@@ -43,6 +39,7 @@
           userID: userID,
           id: product.id
         }
+
       })
     }
   },

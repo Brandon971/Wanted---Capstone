@@ -27,6 +27,10 @@
                 <p class="small me-3 pb-lg-2"><a class="text-muted" href="#!">Forgot password?</a></p>
               </div>
 
+              <SpinnerC v-if="loading"/>
+              <div v-else>
+                <p>{{ message }} {{ user?.firstName }} {{ user?.lastName }}</p>
+              </div>
               <button type="submit" class="btn  btn-block mb-4" >
                 Login
               </button>
@@ -39,10 +43,10 @@
           </div>
         </div>
       </div>
-
+      
       <div class="col-lg-6 mb-5 mb-lg-0">
         <img src="../assets/d0252b475de307444f2fe9c04406d2c3.jpg" class="w-100 rounded-4 shadow-4 "
-          alt="" loading="lazy"/>
+        alt="" loading="lazy"/>
       </div>
     </div>
   </div>
@@ -50,20 +54,40 @@
 </section>
 </template>
 <script>
+import SpinnerC from '../components/Spinner.vue'
 export default {
+  components:{
+    SpinnerC
+  },
+  computed: {
+    message(){
+      return this.$store.state.message
+    },
+    user(){
+      return this.$store.state.user
+    }
+  },
   data() {
     return{
       userLogin :{
         emailAdd :'',
-        userPass:''
+        userPass:'',
       },
+      loading : false,
     
     }
   },
   methods: {
     async login() {
       await this.$store.dispatch('login',this.userLogin )
-      alert('logged in')
+      .then(() => {
+        this.loading = false;
+      })
+      .catch(() => {
+        this.loading =false
+      }),
+      this.loading = true;
+      // alert('logged in')
     }
   },
 
